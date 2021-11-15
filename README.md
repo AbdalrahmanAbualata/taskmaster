@@ -40,4 +40,36 @@ AllTasksActivity:
 
 <img src="screenshots/Screenshot3.png" alt="All Tasks Activity" width="300" height="500"/>
 
+### ________________________________
+***For (lab 27):***
+
+* update the home page (Main Activity) to be contains userName which hold the user name (which is set by user from the settings page) and three tasks buttons, and one button for settings.
+* Add TaskDetailActivity that contains title (from the tapped button of the home page), and hard coded description for now.
+* Add SettingsActivity, which contain field to enter the userName, and save button to save the user name in the sharedPreferences.. to persist and access this name from the homePage.
+
+*Screenshots:*
+
+MainActivity:
+
+<img src="screenshots/Screenshot21.png" alt="Main activity" width="300" height="500"/>
+
+<br>
+<br>
+<br>
+<br>
+
+
+TaskDetailsActivity:
+
+<img src="screenshots/Screenshot23.png" alt="Add Task Activity" width="300" height="500"/>
+<br>
+<br>
+<br>
+<br>
+
+
+SettingsActivity:
+
+<img src="screenshots/Screenshot22.png" alt="All Tasks Activity" width="300" height="500"/>
+
 ### _________________________________
