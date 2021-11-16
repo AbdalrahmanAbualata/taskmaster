@@ -34,6 +34,7 @@ public class SettingsActivity extends AppCompatActivity {
                 // return to the main page after save the name of user
                 Intent mainIntent = new Intent(SettingsActivity.this, MainActivity.class);
                 startActivity(mainIntent);
+//                finish();  we can use that instead of the intent
             }
         });
 
