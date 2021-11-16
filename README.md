@@ -73,3 +73,28 @@ SettingsActivity:
 <img src="screenshots/Screenshot22.png" alt="All Tasks Activity" width="300" height="500"/>
 
 ### _________________________________
+*** (lab 28):***
+
+* update the home page (Main Activity) to be contains RecyclerView which hold the list of tasks and view it as a list for the user and when ever you click in one of list item it will open the task detail page.
+* create a fragment to hold the style for each task..(title, body, state)
+* create taskAdapter for binding the data with the view(fragment styles)
+* connect them together and set onClick listener on each ViewHolder to response for user click and go on the task details page with the title of the tapped task
+
+*Screenshots:*
+
+MainActivity:
+
+<img src="screenshots/Screenshot31.png" alt="Main activity" width="300" height="500"/>
+
+<br>
+<br>
+<br>
+<br>
+
+
+TaskDetailsActivity: (same as the previous one but it appear after clicking in one of the list in the main page )
+
+<img src="screenshots/Screenshot32.png" alt="Add Task Activity" width="300" height="500"/>
+
+
+### _________________________________
