@@ -1,9 +1,13 @@
 package com.example.taskmaster;
 
 import androidx.constraintlayout.solver.state.State;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity(tableName = "tasks")
 public class Task {
-
+    @PrimaryKey(autoGenerate = true)
+    int id;
    public String title;
    public String body;
    public  String state;

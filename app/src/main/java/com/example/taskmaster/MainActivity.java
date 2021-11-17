@@ -22,24 +22,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TaskDataBase db = TaskDataBase.getInstance(this);
+        TaskDao taskDao = db.taskDao();
+        List<Task> tasksDB = taskDao.getAll();
 
 
         String body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis massa, elementum a nibh sed, sodales posuere nunc. Vivamus eget ante malesuada, fermentum tellus eget, dignissim enim. Duis felis enim, facilisis in tortor eget, pellentesque tristique dolor. Nullam hendrerit ex at sagittis tincidunt. Cras in sodales mauris. Quisque lobortis nisl quis rhoncus accumsan. ";
         RecyclerView recyclerView = findViewById(R.id.RV_main);
-        List tasks = new ArrayList<>();
-        Task t1 = new Task("Clean the room", body, "New" );
-        Task t2 = new Task("Study 2 hours", body, "assigned" );
-        Task t3 = new Task("Eat your meal", body, "in progress" );
-        Task t4 = new Task("Take a shower", body, "complete" );
-        Task t5 = new Task("Feed yor cat", body, "New");
-        Task t6 = new Task("Sleep 6 hours", body, "New" );
-        tasks.add(t1);
-        tasks.add(t2);
-        tasks.add(t3);
-        tasks.add(t4);
-        tasks.add(t5);
-        tasks.add(t6);
-        TaskAdapter taskAdapter = new TaskAdapter(tasks, this);
+//        List tasks = new ArrayList<>();
+//        Task t1 = new Task("Clean the room", body, "New" );
+//        Task t2 = new Task("Study 2 hours", body, "assigned" );
+//        Task t3 = new Task("Eat your meal", body, "in progress" );
+//        Task t4 = new Task("Take a shower", body, "complete" );
+//        Task t5 = new Task("Feed yor cat", body, "New");
+//        Task t6 = new Task("Sleep 6 hours", body, "New" );
+//        tasks.add(t1);
+//        tasks.add(t2);
+//        tasks.add(t3);
+//        tasks.add(t4);
+//        tasks.add(t5);
+//        tasks.add(t6);
+        TaskAdapter taskAdapter = new TaskAdapter(tasksDB, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.canScrollVertically();
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -114,9 +117,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 //    private void clickTask(String taskName) {
 //        Intent taskDetailsIntent = new Intent(MainActivity.this, TaskDetailActivity.class);
 //        taskDetailsIntent.putExtra("taskName",taskName);
 //        startActivity(taskDetailsIntent);
 //    }
+
+
+
 }
