@@ -133,3 +133,31 @@ AddTaskActivity:
 <br>
 
 ### _________________________________
+*** (lab 32):***
+
+* configure and add the Amplify dynamoDB to the app
+* create GraphQL model as a schema and the Amplify generated it as model class.
+* save and retrieve the data from the dynamoDB instead of RoomDB
+* edit on styles for the fragment and the all activities.
+* add spinner in the add task form to select the state of the task.
+* add goBack button in the action bar to go back from the (TaskDetailsActivity, SettingsActivity, AddTaskActivity) to the MainActivity.
+
+*Screenshots:*
+
+MainActivity:
+
+<img src="screenshots/Screenshot52.png" alt="Main activity" width="300" height="500"/>
+
+<br>
+<br>
+<br>
+<br>
+
+AddTaskActivity:
+<img src="screenshots/Screenshot51.png" alt="Add Task Activity" width="250" height="500"/>
+<br>
+<br>
+<br>
+<br>
+
+### _________________________________

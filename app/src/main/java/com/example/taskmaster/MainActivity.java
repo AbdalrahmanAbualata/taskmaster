@@ -8,9 +8,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TaskDataBase db = TaskDataBase.getInstance(this);
-        TaskDao taskDao = db.taskDao();
-        List<Task> tasksDB = taskDao.getAll();
+//        TaskDataBase db = TaskDataBase.getInstance(this);
+//        TaskDao taskDao = db.taskDao();
+//        List<Task> tasksDB = taskDao.getAll();
 
 
         String body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis massa, elementum a nibh sed, sodales posuere nunc. Vivamus eget ante malesuada, fermentum tellus eget, dignissim enim. Duis felis enim, facilisis in tortor eget, pellentesque tristique dolor. Nullam hendrerit ex at sagittis tincidunt. Cras in sodales mauris. Quisque lobortis nisl quis rhoncus accumsan. ";
@@ -42,7 +48,37 @@ public class MainActivity extends AppCompatActivity {
 //        tasks.add(t4);
 //        tasks.add(t5);
 //        tasks.add(t6);
-        TaskAdapter taskAdapter = new TaskAdapter(tasksDB, this);
+
+
+
+// Initialized Amplify
+        try {
+            Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("Tutorial", "Initialized Amplify");
+        } catch (AmplifyException e) {
+            Log.e("Tutorial", "Could not initialize Amplify", e);
+        }
+
+// getting data from database .
+        List<Task> Tasks = new ArrayList();
+        Amplify.DataStore.query(
+                Task.class,
+                items -> {
+                    while (items.hasNext()) {
+                        Task item = items.next();
+                        Tasks.add(item);
+                        Log.i("Amplify", "Id " + item.getTitle());
+                    }
+                },
+                failure -> Log.e("Amplify", "Could not query DataStore", failure)
+        );
+
+
+
+//         for room
+        TaskAdapter taskAdapter = new TaskAdapter(Tasks, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.canScrollVertically();
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -82,31 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToAllTasksActivity);
             }
         });
-//        task1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String taskName = task1.getText().toString();
-//                clickTask(taskName);
-//            }
-//        });
-//
-//
-//        task2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String taskName = task2.getText().toString();
-//                clickTask(taskName);
-//            }
-//        });
-//
-//
-//        task3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String taskName = task3.getText().toString();
-//                clickTask(taskName);
-//            }
-//        });
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,13 +128,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-//    private void clickTask(String taskName) {
-//        Intent taskDetailsIntent = new Intent(MainActivity.this, TaskDetailActivity.class);
-//        taskDetailsIntent.putExtra("taskName",taskName);
-//        startActivity(taskDetailsIntent);
-//    }
-
-
-
 }
