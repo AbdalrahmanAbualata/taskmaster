@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Task;
@@ -53,13 +54,20 @@ public class MainActivity extends AppCompatActivity {
 
 // Initialized Amplify
         try {
+            Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSDataStorePlugin());
             Amplify.configure(getApplicationContext());
-
             Log.i("Tutorial", "Initialized Amplify");
-        } catch (AmplifyException e) {
-            Log.e("Tutorial", "Could not initialize Amplify", e);
+        } catch (AmplifyException failure) {
+            Log.e("Tutorial", "Could not initialize Amplify", failure);
         }
+        Amplify.DataStore.observe(Task.class,
+                started -> Log.i("Tutorial", "Observation began."),
+                change -> Log.i("Tutorial", change.item().toString()),
+                failure -> Log.e("Tutorial", "Observation failed.", failure),
+                () -> Log.i("Tutorial", "Observation complete.")
+        );
+
 
 // getting data from database .
         List<Task> Tasks = new ArrayList();
