@@ -18,6 +18,7 @@ import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,22 +34,10 @@ public class MainActivity extends AppCompatActivity {
 //        TaskDao taskDao = db.taskDao();
 //        List<Task> tasksDB = taskDao.getAll();
 
-
-        String body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras felis massa, elementum a nibh sed, sodales posuere nunc. Vivamus eget ante malesuada, fermentum tellus eget, dignissim enim. Duis felis enim, facilisis in tortor eget, pellentesque tristique dolor. Nullam hendrerit ex at sagittis tincidunt. Cras in sodales mauris. Quisque lobortis nisl quis rhoncus accumsan. ";
         RecyclerView recyclerView = findViewById(R.id.RV_main);
-//        List tasks = new ArrayList<>();
-//        Task t1 = new Task("Clean the room", body, "New" );
-//        Task t2 = new Task("Study 2 hours", body, "assigned" );
-//        Task t3 = new Task("Eat your meal", body, "in progress" );
-//        Task t4 = new Task("Take a shower", body, "complete" );
-//        Task t5 = new Task("Feed yor cat", body, "New");
-//        Task t6 = new Task("Sleep 6 hours", body, "New" );
-//        tasks.add(t1);
-//        tasks.add(t2);
-//        tasks.add(t3);
-//        tasks.add(t4);
-//        tasks.add(t5);
-//        tasks.add(t6);
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 
 
@@ -70,10 +59,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 // getting data from database .
+        String teamName = sharedPreferences.getString("teamName","2a38e3e0-7023-4cb5-9a31-a3979698cf13");
         List<Task> Tasks = new ArrayList();
         Amplify.DataStore.query(
-                Task.class,
+                Task.class,Task.TEAM_ID.eq(teamName),
                 items -> {
+                    Tasks.clear();
                     while (items.hasNext()) {
                         Task item = items.next();
                         Tasks.add(item);
@@ -85,7 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-//         for room
+
+
+
         TaskAdapter taskAdapter = new TaskAdapter(Tasks, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.canScrollVertically();
@@ -97,18 +90,17 @@ public class MainActivity extends AppCompatActivity {
         Button addTask = MainActivity.this.findViewById(R.id.button_addTask);
         Button allTasks = MainActivity.this.findViewById(R.id.button_allTasks);
 
-//        Button task1 = MainActivity.this.findViewById(R.id.button_task1);
-//        Button task2 = MainActivity.this.findViewById(R.id.button_task2);
-//        Button task3 = MainActivity.this.findViewById(R.id.button_task3);
 
         Button settings = MainActivity.this.findViewById(R.id.button_settings);
 
 
         TextView userNameView  = findViewById(R.id.home_page_userName);
+        TextView teamNameView  = findViewById(R.id.home_page_teamName);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         String userName = sharedPreferences.getString("userName","User");
         userNameView.setText(userName+"' Tasks");
+//        teamNameView.setText(teamName);
 
 
         addTask.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +108,32 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent goToAddTaskActivity = new Intent(MainActivity.this, AddTaskActivity.class);
                 startActivity(goToAddTaskActivity);
+
+
+                // to add new teams
+//                Team item1 = Team.builder()
+//                        .name("team1")
+//                        .build();
+//                Amplify.DataStore.save(
+//                        item1,
+//                        success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+//                        error -> Log.e("Amplify", "Could not save item to DataStore", error)
+//                );
+//                Team item2 = Team.builder()
+//                        .name("team2")
+//                        .build();
+//                Amplify.DataStore.save(
+//                        item2,
+//                        success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+//                        error -> Log.e("Amplify", "Could not save item to DataStore", error)
+//                );
+//                Team item3 = Team.builder().name("team3").build();
+//                Amplify.DataStore.save(
+//                        item3,
+//                        success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
+//                        error -> Log.e("Amplify", "Could not save item to DataStore", error)
+//                );
+
             }
         });
 
