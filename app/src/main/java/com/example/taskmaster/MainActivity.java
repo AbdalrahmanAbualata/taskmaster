@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         TextView userNameView  = findViewById(R.id.home_page_userName);
-        TextView teamNameView  = findViewById(R.id.home_page_teamName);
+
 
 
         String userName = sharedPreferences.getString("userName","User");
