@@ -161,3 +161,36 @@ AddTaskActivity:
 <br>
 
 ### _________________________________
+
+*** (lab 33):***
+* create a new class Team .
+* save and retrieve the data from the dynamoDB .
+* edit on setting page and add task page to contain a list of the teams we have .
+
+*Screenshots:*
+
+MainActivity:
+
+<img src="screenshots/Screenshot61.png" alt="Main activity" width="300" height="500"/>
+
+<br>
+<br>
+<br>
+<br>
+
+AddTaskActivity:
+
+
+<img src="screenshots/Screenshot62.png" alt="Add Task Activity" width="300" height="500"/>
+
+
+<br>
+<br>
+<br>
+<br>
+
+SettingsActivity:
+
+<img src="screenshots/Screenshot63.png" alt="All Tasks Activity" width="300" height="500"/>
+
+### _________________________________
