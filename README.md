@@ -194,3 +194,41 @@ SettingsActivity:
 <img src="screenshots/Screenshot63.png" alt="All Tasks Activity" width="300" height="500"/>
 
 ### _________________________________
+
+*** (lab 36):***
+* configure and add the Amplify Authentication (Cognito)
+* Add the Amplify pre-built UI for (Sign in, Sign up) Activity to the App.
+* Add Logout button to the setting activity.
+
+*Screenshots:*
+
+SettingsActivity:
+
+<img src="screenshots/Screenshot71.png" alt="Main activity" width="200" height="350"/>
+
+<br>
+<br>
+<br>
+<br>
+
+
+Login:
+
+<img src="screenshots/Screenshot72.png" alt="Add Task Activity" width="200" height="350"/>
+
+<br>
+<br>
+<br>
+<br>
+
+
+Logout :
+
+<img src="screenshots/Screenshot73.png" alt="Add Task Activity" width="200" height="350"/> 
+
+<br>
+<br>
+<br>
+<br>
+
+### _________________________________

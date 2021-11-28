@@ -44,21 +44,12 @@ public class AddTaskActivity extends AppCompatActivity {
                 new String[]{"Team 1", "Team 2", "Team 3"});
         teamSpinner = findViewById(R.id.teamSpinner);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        teamSpinner.setAdapter(dataAdapter2);
-
-
-//        TaskDataBase db = TaskDataBase.getInstance(this);
-//        TaskDao taskDao = db.taskDao();
-
-
+        // get Teams from DataBase
         getTeams();
 
         addTask.setOnClickListener(new  View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                Task task = new Task(title.getText().toString(),body.getText().toString(),state.getText().toString());
-//                taskDao.insert(task);
-
 
                 switch(teamSpinner.getSelectedItem().toString()){
                     case "Team 1":
@@ -99,6 +90,7 @@ public class AddTaskActivity extends AppCompatActivity {
             }
         });
     }
+
     private void getTeams() {
         Amplify.API.query(
                 ModelQuery.list(Team.class),
