@@ -15,10 +15,11 @@ import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Task;
-import com.amplifyframework.datastore.generated.model.Team;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,26 +31,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        TaskDataBase db = TaskDataBase.getInstance(this);
-//        TaskDao taskDao = db.taskDao();
-//        List<Task> tasksDB = taskDao.getAll();
-
         RecyclerView recyclerView = findViewById(R.id.RV_main);
-
-
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-
-
 
 // Initialized Amplify
         try {
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSDataStorePlugin());
+            // Add this line, to include the Auth plugin. (this for Auth)
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+
             Amplify.configure(getApplicationContext());
             Log.i("Tutorial", "Initialized Amplify");
         } catch (AmplifyException failure) {
             Log.e("Tutorial", "Could not initialize Amplify", failure);
         }
+
+// for auth ...........................
+        Amplify.Auth.fetchAuthSession(
+                result -> Log.i("AmplifyQuickstart", result.toString()),
+                error -> Log.e("AmplifyQuickstart", error.toString())
+        );
+
         Amplify.DataStore.observe(Task.class,
                 started -> Log.i("Tutorial", "Observation began."),
                 change -> Log.i("Tutorial", change.item().toString()),
@@ -73,10 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 },
                 failure -> Log.e("Amplify", "Could not query DataStore", failure)
         );
-
-
-
-
 
 
         TaskAdapter taskAdapter = new TaskAdapter(Tasks, this);
@@ -108,31 +107,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent goToAddTaskActivity = new Intent(MainActivity.this, AddTaskActivity.class);
                 startActivity(goToAddTaskActivity);
-
-
-                // to add new teams
-//                Team item1 = Team.builder()
-//                        .name("team1")
-//                        .build();
-//                Amplify.DataStore.save(
-//                        item1,
-//                        success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
-//                        error -> Log.e("Amplify", "Could not save item to DataStore", error)
-//                );
-//                Team item2 = Team.builder()
-//                        .name("team2")
-//                        .build();
-//                Amplify.DataStore.save(
-//                        item2,
-//                        success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
-//                        error -> Log.e("Amplify", "Could not save item to DataStore", error)
-//                );
-//                Team item3 = Team.builder().name("team3").build();
-//                Amplify.DataStore.save(
-//                        item3,
-//                        success -> Log.i("Amplify", "Saved item: " + success.item().getId()),
-//                        error -> Log.e("Amplify", "Could not save item to DataStore", error)
-//                );
 
             }
         });
