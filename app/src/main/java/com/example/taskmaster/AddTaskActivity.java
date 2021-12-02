@@ -36,14 +36,13 @@ public class AddTaskActivity extends AppCompatActivity {
         Button addTask = findViewById(R.id.button_addTask_activity_addTask);
 
 
-
-
 // for create spinner
         ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item,
                 new String[]{"Team 1", "Team 2", "Team 3"});
         teamSpinner = findViewById(R.id.teamSpinner);
         dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        teamSpinner.setAdapter(dataAdapter2);
         // get Teams from DataBase
         getTeams();
 
