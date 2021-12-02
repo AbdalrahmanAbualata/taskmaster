@@ -232,3 +232,40 @@ Logout :
 <br>
 
 ### _________________________________
+
+*** (lab 37):***
+* Add and configure amplify s3 storage.
+* Add the ability to attach a file when create a task.
+* upload the files to the s3 storage.
+* Display the file in the task details page, (if it was an image; display it, If it isn't image, display a link for this file).
+
+*Screenshots:*
+
+SettingsActivity:
+
+<img src="screenshots/Screenshot71.png" alt="Main activity" width="200" height="350"/>
+
+<br>
+<br>
+<br>
+<br>
+
+
+Login:
+
+<img src="screenshots/Screenshot72.png" alt="Add Task Activity" width="200" height="350"/>
+
+<br>
+<br>
+<br>
+<br>
+
+
+Logout :
+
+<img src="screenshots/Screenshot73.png" alt="Add Task Activity" width="200" height="350"/> 
+
+<br>
+<br>
+<br>
+<br>
