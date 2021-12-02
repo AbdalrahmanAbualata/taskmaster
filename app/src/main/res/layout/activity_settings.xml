@@ -11,7 +11,7 @@
         android:layout_width="264dp"
         android:layout_height="50dp"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="144dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="User Name"
@@ -51,6 +51,20 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_save_name"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.317" />
+
+    <TextView
+        android:id="@+id/login_user_name"
+        android:layout_width="228dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="52dp"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/input_user_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.256"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.111" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
