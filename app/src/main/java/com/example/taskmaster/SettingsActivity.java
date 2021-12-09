@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
         loginBut.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
-            public void onClick(View v) {
+            public void onClick(View v){
                 Amplify.Auth.fetchAuthSession(
                         result ->{
                             if(result.isSignedIn()){
@@ -115,8 +115,7 @@ public class SettingsActivity extends AppCompatActivity {
                 user -> {
                     if (user.isSignedIn()) {
                         login.setText("Log out");
-                    } else {
-
+                    }else {
                         login.setText("Log in");
                     }
                 },

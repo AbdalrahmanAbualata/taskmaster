@@ -259,3 +259,44 @@ TaskDetailActivity :
 <br>
 <br>
 <br>
+
+*** (lab 41):***
+* Add the ability to share an image from external apps to add it to new task.
+* when an image shared from external app, the button attach file will be disabled.
+* the shared image will be uploaded to S3 storage and will be displayed in the tast details activity when the task is clicked from the main activity.
+
+*Screenshots:*
+
+Select an image to share:
+
+<img src="screenshots/Screenshot91.png" alt="Main activity" width="200" height="350"/>
+
+<hr>
+
+share selection list:
+
+<img src="screenshots/Screenshot92.png" alt="Main activity" width="200" height="350"/>
+
+<hr>
+
+Add task Activity:
+
+<img src="screenshots/Screenshot93.png" alt="Main activity" width="200" height="350"/>
+
+<hr>
+
+The added task in main Activity:
+
+<img src="screenshots/Screenshot94.png" alt="Main activity" width="200" height="350"/>
+
+<hr>
+
+The task details activity:
+
+<img src="screenshots/Screenshot95.png" alt="Main activity" width="200" height="350"/>
+
+
+<br>
+<br>
+<br>
+<br>
