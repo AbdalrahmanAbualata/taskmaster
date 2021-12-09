@@ -31,6 +31,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private List<Team> teams =  new ArrayList<>();
     Intent chooseFile = new Intent(Intent.ACTION_GET_CONTENT);
     Uri uri;
+//    Uri imageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,24 @@ public class AddTaskActivity extends AppCompatActivity {
         TextView filename = (TextView) findViewById(R.id.filename);
 
         filename.setText("Choose a file");
+
+
+
+
+        // intent Filter
+
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        String type = intent.getType();
+
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+           if (type.startsWith("image/")) {
+                handleSendImage(intent); // Handle single image being sent
+            }
+        }
+
+        // intent Filter
+///************************************************************************
 
         upload.setOnClickListener(new  View.OnClickListener(){
             @Override
@@ -112,6 +131,22 @@ public class AddTaskActivity extends AppCompatActivity {
         });
     }
 
+
+
+    // intent Filter
+    void handleSendImage(Intent intent) {
+         uri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        TextView filename = (TextView) findViewById(R.id.filename);
+        if (uri != null) {
+                filename.setText(uri.getPath());
+            } else {
+                filename.setText("Choose a file");
+            }
+            // Update UI to reflect image being shared
+    }
+
+    // ***************************************************
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -129,8 +164,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
                 if (uri != null) {
                     filename.setText(uri.getPath());
-
-                } else {
+                }else {
                     filename.setText("Choose a file");
 
                 }

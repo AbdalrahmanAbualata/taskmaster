@@ -8,8 +8,7 @@
             <data android:scheme="https" />
         </intent>
         <intent>
-            <action android:name=
-                "android.support.customtabs.action.CustomTabsService" />
+            <action android:name="android.support.customtabs.action.CustomTabsService" />
         </intent>
     </queries>
 
@@ -38,21 +37,30 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-<!--   signup configuration -->
+        <!--   signup configuration -->
         <activity
             android:name="com.amplifyframework.auth.cognito.activities.HostedUIRedirectActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="myapp" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".AddTaskActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
