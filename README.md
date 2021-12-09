@@ -300,3 +300,35 @@ The task details activity:
 <br>
 <br>
 <br>
+
+
+### _________________________________
+
+***lab 42(Location):***
+
+* Add Current Location to the task added.
+* request Location permission from the users
+* store the location as Altitude and Longitude values for each task Added.
+
+*Screenshots:*
+
+Add task with location :
+
+<img src="screenshots/Screenshot101.png" alt="Main activity" width="200" height="400"/>
+
+<br>
+<br>
+<br>
+<br>
+
+Task Detail  with location :
+
+<img src="screenshots/Screenshot102.png" alt="Main activity" width="200" height="400"/>
+
+<br>
+<br>
+<br>
+<br>
+
+
+###  _________________________________
